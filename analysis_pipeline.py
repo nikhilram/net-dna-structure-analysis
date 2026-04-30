@@ -377,11 +377,6 @@ def identify_intact_nuclei_conservative(dna_mask, cell_diameter=15, is_control=F
     return nuclei_mask, nets_mask
 
 
-def separate_cells_from_nets(total_dna_mask, cell_diameter=15):
-    return identify_intact_nuclei_conservative(total_dna_mask, cell_diameter, is_control=False)
-
-
-
 def analyze_filaments(mask, intensity_img, min_length=20):
     
     if not np.any(mask):
