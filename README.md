@@ -29,3 +29,7 @@ ZBP1 colocalization\
 Notes
 
 Skeleton-based metrics capture structural organization of DNA, while intensity-based metrics capture signal composition.
+
+## Example Output
+
+![Example QC Output](pma_fig1_multichannel.png)
