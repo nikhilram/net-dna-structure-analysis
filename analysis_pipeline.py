@@ -99,7 +99,7 @@ def save_multichannel_visualization(
     # -----------------------------------------
 
     if img.ndim == 3 and img.shape[0] == 4:
-        display_img = img[0]  # show B-DNA (or choose Z: img[1])
+        display_img = img[0]  
     else:
         display_img = img
     
@@ -317,15 +317,14 @@ def identify_intact_nuclei_conservative(dna_mask, cell_diameter=15, is_control=F
     nuclei_mask = np.zeros_like(dna_mask, dtype=bool)
     nets_mask = np.zeros_like(dna_mask, dtype=bool)
     
-    # Size criteria
-    min_nucleus_area = np.pi * (cell_diameter * 0.25) ** 2
-    max_nucleus_area = np.pi * (cell_diameter * 1.2) ** 2  # Allow for spread nuclei
     
-    # For controls: be VERY conservative about calling anything a NET
+    min_nucleus_area = np.pi * (cell_diameter * 0.25) ** 2
+    max_nucleus_area = np.pi * (cell_diameter * 1.2) ** 2
+    
     if is_control:
-        max_nucleus_area = np.pi * (cell_diameter * 2.0) ** 2  # Much more permissive
-        max_aspect_ratio = 6.0  # Allow very elongated lobulated nuclei
-        min_solidity = 0.4  # Allow irregular shapes
+        max_nucleus_area = np.pi * (cell_diameter * 2.0) ** 2 
+        max_aspect_ratio = 6.0 
+        min_solidity = 0.4 
     else:
         max_aspect_ratio = 4.0
         min_solidity = 0.55
@@ -338,35 +337,29 @@ def identify_intact_nuclei_conservative(dna_mask, cell_diameter=15, is_control=F
         solidity = region.solidity
         eccentricity = region.eccentricity
         
-        # For CONTROLS: classify almost everything as nucleus
         if is_control:
-            # Only classify as NET if EXTREMELY elongated and large
             is_definite_net = (
-                major_axis > cell_diameter * 3.0 and  # Very long
-                aspect_ratio > 8.0 and  # Extremely elongated
-                area > max_nucleus_area  # Large
+                major_axis > cell_diameter * 3.0 and  
+                aspect_ratio > 8.0 and  
+                area > max_nucleus_area  
             )
             
             if is_definite_net:
                 nets_mask[labeled == region.label] = True
             else:
-                # Everything else in controls is a nucleus
                 nuclei_mask[labeled == region.label] = True
         
-        # For TREATED samples: use stricter NET criteria
         else:
-            # Nuclear characteristics
             is_compact_nucleus = (
                 min_nucleus_area < area < max_nucleus_area and
                 aspect_ratio < max_aspect_ratio and
                 solidity > min_solidity
             )
             
-            # NET characteristics (must meet multiple criteria)
             is_likely_net = (
-                (major_axis > cell_diameter * 2.5 and aspect_ratio > 5.0) or  # Very elongated
-                (area > max_nucleus_area * 1.5 and solidity < 0.5) or  # Large and diffuse
-                (major_axis > cell_diameter * 3.0)  # Very long structure
+                (major_axis > cell_diameter * 2.5 and aspect_ratio > 5.0) or 
+                (area > max_nucleus_area * 1.5 and solidity < 0.5) or 
+                (major_axis > cell_diameter * 3.0)
             )
             
             if is_likely_net and not is_compact_nucleus:
