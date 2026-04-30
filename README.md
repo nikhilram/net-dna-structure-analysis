@@ -33,3 +33,4 @@ Skeleton-based metrics capture structural organization of DNA, while intensity-b
 ## Example Output
 
 ![Example QC Output](pma_fig1_multichannel.png)
+Representative QC output showing raw and processed B-DNA (red) and Z-DNA (green) channels, including nuclei exclusion and segmentation-based filament extraction.
