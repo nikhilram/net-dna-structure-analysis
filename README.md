@@ -12,18 +12,18 @@ python run_analysis.py --input data/ --output results.csv
 Input - 
 
 Multichannel images with: 
-Channel 0: B-DNA
-Channel 1: Z-DNA
-Channel 2: ZBP1
-Channel 3: MITO
+Channel 0: B-DNA\
+Channel 1: Z-DNA\
+Channel 2: ZBP1\
+Channel 3: MITO\
 Channel 4: 8oxoG (optional)
 
 
 Key Metrics -
-Z_num_domains, Z_efficiency
-Z_independent_fraction
-Z_mito_fraction
-ZBP1 colocalization
+Z_num_domains, Z_efficiency\
+Z_independent_fraction\
+Z_mito_fraction\
+ZBP1 colocalization\
 8oxoG overlap metrics
 
 Notes
