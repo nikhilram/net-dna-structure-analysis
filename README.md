@@ -18,8 +18,9 @@ Channel 1: Z-DNA
 Channel 2: ZBP1
 Channel 3: MITO
 Channel 4: 8oxoG (optional)
+
+
 Key Metrics
-log_ZB (skeleton-based Z/B ratio)
 Z_num_domains, Z_efficiency
 Z_independent_fraction
 Z_mito_fraction
