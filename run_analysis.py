@@ -23,7 +23,7 @@ def main(input_dir, output_csv):
                     "8oxoG": {"index": 4},
                 },
                 treatment_groups=None,
-                save_output=False
+                save_output=False #change to True for QC B and Z DNA calls
             )
 
             all_results.append(results)
